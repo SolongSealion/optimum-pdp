@@ -1,0 +1,47 @@
+@font-face {
+    font-family: 'Apercu';
+    src: url('fonts/apercu_regular_pro.otf') format('opentype');
+  }
+@font-face {
+    font-family: 'Apercu';
+    src: url('fonts/apercu_regular_italic_pro.otf') format('opentype');
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Apercu';
+    src: url('fonts/apercu_bold_italic_pro.otf') format('opentype');
+    font-weight: 700;
+    font-style: italic;
+  }
+@font-face {
+    font-family: 'Apercu';
+    src: url('fonts/fonts/apercu_bold_pro.otf') format('opentype');
+    font-weight: 700;
+}
+@font-face {
+    font-family: 'Apercu';
+    src: url('fonts/apercu_light_pro_50.otf') format('opentype');
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'Apercu';
+    src: url('fonts/apercu_medium_italic_pro.otf') format('opentype');
+    font-weight: 500;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Apercu';
+    src: url('fonts/apercu_medium_pro.otf') format('opentype');
+    font-weight: 500;
+}
+
+:root {
+    --accent: #008290;
+    --base-soft: #BFBFBF;
+    --header-color: #231F20;
+    --text-color: #4D4D4F;
+    --success-color: #277C32;
+    --table-color: #142B6F;
+    --disabled-color: #D8D8D8;
+    --disabled-text-color: #707070;
+}

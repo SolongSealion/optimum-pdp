@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WLS Optimum Product Detail Page</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body class="page">
+
+    <aside>
+        <div class="selection-title">
+            <span>Select your intake form</span>
+            <div class="info-icon hidden" id="starterkit-info-icon" role="tooltip">
+                <span class="material-symbols-outlined info-icon" aria-label="Info">info</span>
+                <div class="tooltip" id="starterkit-tooltip">
+                    Starterkits come with both capsule and chewable options so that you can find out which one fits you best.
+                </div>
+            </div>
+        </div>
+
+        <div class="intake-options">
+            <label class="option">
+                <input type="radio" name="intake" value="capsule">
+                <div class="option-box text-center">
+                    <span>Capsule</span>
+                </div>
+            </label>
+            <label class="option">
+                <input type="radio" name="intake" value="chewable">
+                <div class="option-box text-center">
+                    <span>Chewable</span>
+                </div>
+            </label>
+        </div>
+
+        <div class="intake-information-seperate hidden">
+            <span class="material-symbols-outlined info-icon-static">info</span>
+            <span>You’ll receive separate Ferro Optimum tablets with your chewable multivitamin, as iron and copper aren’t pleasant to chew.</span>
+        </div>
+
+        <div class="selection-title">Select your interval</div>
+        <div class="interval-options">
+            <label class="option">
+                <input type="radio" name="interval" value="subscription">
+                <div class="option-box">
+                    <div class="title-price-group">
+                        <div class="title-price">
+                            <span class="title">3-Month Subscription</span>
+                            <span class="green-subtitle">Subscribe and save 16%</span>
+                        </div>
+                        <div class="price-details">
+                            <div>
+                                <span class="original-price">€107,9</span>
+                                <span class="current-price">€89,95</span>
+                            </div>
+                            <span class="green-subtitle">€1,05 per day</span>
+                        </div>
+                    </div>
+                    <div class="details">
+                        <div class="divider"></div>
+                        <div class="usps">
+                            <div class="usp">
+                                <span class="material-icons">repeat</span>
+                                <span>3-month supply, delivered every 3 months</span>
+                            </div>
+                            <div class="usp">
+                                <span class="material-symbols-outlined">verified_user</span>
+                                <span>Pause or cancel anytime, 30-day money-back guarantee</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </label>
+
+            <label class="option">
+                <input type="radio" name="interval" value="one-time">
+                <div class="option-box">
+                    <div class="title-price-group center">
+                        <span class="title">One-time purchase</span>
+                        <div class="price-details">
+                            <span class="current-price">€107,95</span>
+                            <span class="green-subtitle">€1,45 per day</span>
+                        </div>
+                    </div>
+                    <div class="details">
+                        <div class="divider"></div>
+                        <div class="usps">
+                            <div class="usp">
+                                <span class="material-symbols-outlined">pill</span>
+                                <span>Get a 3-month supply of multivitamins</span>
+                            </div>
+                            <div class="usp">
+                                <span class="material-icons">shopping_cart_checkout</span>
+                                <span>Checkout as a guest, no strings attached</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </label>
+
+            <label class="option">
+                <input type="radio" name="interval" value="starterkit">
+                <div class="option-box">
+                    <div class="title-price-group center">
+                        <span class="title">Starterkit</span>
+                        <div class="price-details">
+                            <span class="current-price">€5</span>
+                        </div>
+                    </div>
+                    <div class="details">
+                        <div class="divider"></div>
+                        <div class="usps">
+                            <div class="usp">
+                                <span class="material-symbols-outlined">pill</span>
+                                <span>Try our product for one week</span>
+                            </div>
+                            <div class="usp">
+                                <span class="material-symbols-outlined">account_balance_wallet</span>
+                                <span>Get your €5 back on your next purchase</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </label>
+        </div>
+    </aside>
+
+    <script src="script.js"></script>
+</body>
+</html>

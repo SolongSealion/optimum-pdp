@@ -1,0 +1,216 @@
+@import url("typography-colors.css");
+
+.page {
+    font-family: 'Apercu', sans-serif;
+    font-size: 16px;
+    letter-spacing: -0.02em;
+    line-height: 1.5;
+    margin: 1rem;
+    color: var(--text-color);
+}
+
+/* ----------- Section titles ----------- */
+.selection-title {
+    margin-bottom: 10px;
+    margin-top: 16px;
+    display: flex; /* Align text and icon in a row */
+    align-items: center;
+    gap: 6px; /* Spacing between text and icon */
+}
+
+/* ----------- Options container ----------- */
+.intake-options,
+.interval-options {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+}
+
+.intake-options .option,
+.interval-options .option {
+    flex: 1;
+}
+
+.interval-options {
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Hide radio buttons */
+.option input {
+    display: none;
+}
+
+/* ----------- Box surrounding options ----------- */
+.option-box {
+    border: 1px solid var(--base-soft);
+    border-radius: 8px;
+    padding: 16px 24px;
+    cursor: pointer;
+    transition: background-color 0.1s, border 0.1s, opacity 0.1s;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* ----------- Additional information ----------- */
+.intake-information-seperate {
+    margin-top: 10px;
+    display: flex;
+    gap: 4px;
+    font-size: 14px;
+}
+
+.info-icon-static {
+    font-size: 18px;
+}
+
+/* Hide by default */
+.hidden {
+    display: none;
+}
+
+/* ----------- Tooltip styling (copied from Tailwind) ----------- */
+.info-icon {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    font-size: 18px;
+}
+
+/* Hide the info icon by default */
+#starterkit-info-icon.hidden {
+    display: none;
+}
+
+/* Tooltip box */
+.tooltip {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 120%;
+    background-color: rgb(55 65 81);
+    color: rgb(229 231 235);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    max-width: 320px;
+    min-width: 200px;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    white-space: normal;
+    word-wrap: break-word;
+    line-height: 1.4;
+    z-index: 9999;
+}
+
+/* Tooltip positioning below when necessary */
+.tooltip.below {
+    bottom: auto;
+    top: 120%;
+}
+
+/* Show tooltip on hover */
+.info-icon:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ----------- Titles and prices ----------- */
+.title-price-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-price {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    color: var(--header-color);
+}
+
+/* ----------- Price details ----------- */
+.price-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.current-price {
+    font-weight: 700;
+    color: var(--header-color);
+}
+
+.original-price {
+    font-weight: 700;
+    text-decoration: line-through;
+    color: #858585;
+}
+
+.green-subtitle {
+    font-size: 14px;
+    color: var(--success-color);
+}
+
+/* ----------- Divider ----------- */
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: #D8D8D8;
+    margin: 10px 0;
+}
+
+/* ----------- USPs section ----------- */
+.usps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.usp {
+    display: flex;
+    font-size: 14px;
+    align-items: center;
+    gap: 8px;
+}
+
+.center {
+    align-items: center;
+    text-align: center;
+}
+
+/* ----------- Selected option styling ----------- */
+.option input:checked + .option-box {
+    border-color: var(--accent);
+    background-color: rgba(0, 122, 255, 0.05);
+    outline: 2px solid var(--accent);
+}
+
+/* Expandable details */
+.details {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.1s ease-out, opacity 0.1s ease-out;
+}
+
+/* ----------- Disabled options ----------- */
+.option.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.option.disabled .option-box {
+    background-color: var(--disabled-color);
+    border-color: var(--disabled-color);
+    color: var(--disabled-text-color);
+    opacity: 0.6;
+}
