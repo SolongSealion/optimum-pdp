@@ -1,112 +1,122 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // Get the form (the whole page body in this case)
+document.addEventListener("DOMContentLoaded", () => {
+    // Elements
     const form = document.body;
-
-    // Get the info icon and tooltip
+    const featuredImage = document.getElementById("featuredImage");
+    const thumbnailButtons = document.querySelectorAll(".thumbnail-btn");
+    const thumbnailsContainer = document.querySelector(".thumbnails");
     const starterkitInfoIcon = document.getElementById("starterkit-info-icon");
     const tooltip = document.getElementById("starterkit-tooltip");
 
-    // Handle tooltip positioning when hovering over the info icon
-    starterkitInfoIcon.addEventListener("mouseenter", function () {
-        positionTooltip(starterkitInfoIcon, tooltip);
-    });
-
-    // Listen for changes in the form (when user selects an option)
-    form.addEventListener("change", function (event) {
-        const target = event.target;
-
-        if (target.name === "interval") {
-            handleIntervalSelection(target);
-        }
-
-        if (target.name === "intake") {
-            updateIntakeInformation();
-        }
-    });
-
-    // Ensure info boxes and tooltips are hidden when the page loads
+    // Tooltips and info boxes hidden on page load
     resetIntakeInfo();
+
+    // Add event listeners
+    if (starterkitInfoIcon) {
+        starterkitInfoIcon.addEventListener("mouseenter", () => positionTooltip(starterkitInfoIcon, tooltip));
+    }
+
+    if (form) {
+        form.addEventListener("change", (event) => {
+            const target = event.target;
+            if (target.name === "interval") handleIntervalSelection(target);
+            if (target.name === "intake") updateIntakeInformation();
+        });
+    }
+
+    if (thumbnailButtons.length > 0) {
+        thumbnailButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                // Update featured image source
+                featuredImage.src = "assets/" + button.getAttribute("data-src");
+
+                // Update active thumbnail
+                thumbnailButtons.forEach(btn => btn.classList.remove("active"));
+                button.classList.add("active");
+
+                // Scroll the selected thumbnail into center
+                centerThumbnail(button);
+            });
+        });
+    }
 });
 
 /**
- * Function to position the tooltip dynamically based on available space.
+ * Positions the tooltip dynamically based on available space.
  */
 function positionTooltip(icon, tooltip) {
-    const rect = icon.getBoundingClientRect(); // Get the position of the icon
+    const rect = icon.getBoundingClientRect();
     const tooltipHeight = tooltip.offsetHeight;
-    const spaceAbove = rect.top; // Space above the icon
-    const spaceBelow = window.innerHeight - rect.bottom; // Space below the icon
+    const spaceAbove = rect.top;
+    const spaceBelow = window.innerHeight - rect.bottom;
 
-    // If there's not enough space above, position the tooltip below
-    if (spaceAbove < tooltipHeight && spaceBelow > tooltipHeight) {
-        tooltip.style.bottom = "auto";
-        tooltip.style.top = "120%";
-    } else {
-        tooltip.style.top = "auto";
-        tooltip.style.bottom = "120%";
-    }
+    tooltip.style.bottom = spaceAbove < tooltipHeight && spaceBelow > tooltipHeight ? "auto" : "120%";
+    tooltip.style.top = spaceAbove < tooltipHeight && spaceBelow > tooltipHeight ? "120%" : "auto";
 }
 
 /**
- * Function to handle the selection of an interval (Subscription, One-time, Starterkit)
+ * Handles selection of interval (Subscription, One-time, Starterkit).
  */
 function handleIntervalSelection(selectedRadio) {
-    const isStarterKit = selectedRadio.value === "starterkit"; // Check if user selected Starterkit
+    const isStarterKit = selectedRadio.value === "starterkit";
     const intakeOptions = document.querySelectorAll(".intake-options .option");
     const starterkitInfoIcon = document.getElementById("starterkit-info-icon");
 
-    // Disable intake options when Starterkit is selected, enable them otherwise
-    intakeOptions.forEach((option) => {
+    intakeOptions.forEach(option => {
         const input = option.querySelector("input");
-        option.classList.toggle("disabled", isStarterKit); // Add disabled class to intake options if the starterkit is selected
-        if (isStarterKit) {
-            input.checked = false; // Uncheck intake options when Starterkit is selected
-        }
+        option.classList.toggle("disabled", isStarterKit);
+        if (isStarterKit) input.checked = false;
     });
 
-    // Show or hide the info icon depending on whether Starterkit is selected
     starterkitInfoIcon.classList.toggle("hidden", !isStarterKit);
 
-    // Expand the corresponding .details section
-    // First hide all .details
-    document.querySelectorAll(".details").forEach((details) => {
+    // Hide all details, then show the selected one
+    document.querySelectorAll(".details").forEach(details => {
         details.style.maxHeight = "0px";
         details.style.opacity = "0";
         details.style.overflow = "hidden";
     });
 
-    // Then show .details for the selected radio
     const selectedDetails = selectedRadio.closest(".option").querySelector(".details");
     if (selectedDetails) {
-        selectedDetails.style.maxHeight = selectedDetails.scrollHeight + "px";
+        selectedDetails.style.maxHeight = `${selectedDetails.scrollHeight}px`;
         selectedDetails.style.opacity = "1";
         selectedDetails.style.overflow = "visible";
     }
 
-    // Update intake information based on selection
     updateIntakeInformation();
 }
 
 /**
- * Function to update the intake information message based on user selection.
+ * Updates the intake information message based on user selection.
  */
 function updateIntakeInformation() {
     const selectedInterval = document.querySelector('input[name="interval"]:checked');
-    const isStarterKit = selectedInterval && selectedInterval.value === "starterkit";
-
+    const isStarterKit = selectedInterval?.value === "starterkit";
     const selectedIntake = document.querySelector('input[name="intake"]:checked');
-    const isChewable = selectedIntake && selectedIntake.value === "chewable";
-
+    const isChewable = selectedIntake?.value === "chewable";
     const intakeInfoSeperate = document.querySelector(".intake-information-seperate");
 
-    // Show "Chewable" info only when "Chewable" is selected and Starterkit is NOT selected
     intakeInfoSeperate.classList.toggle("hidden", !(isChewable && !isStarterKit));
 }
 
 /**
- * Function to hide all information boxes and tooltips when the page loads.
+ * Hides all information boxes and tooltips when the page loads.
  */
 function resetIntakeInfo() {
-    document.querySelector(".intake-information-seperate").classList.add("hidden");
-    document.getElementById("starterkit-info-icon").classList.add("hidden");
+    document.querySelector(".intake-information-seperate")?.classList.add("hidden");
+    document.getElementById("starterkit-info-icon")?.classList.add("hidden");
+}
+
+/**
+ * Centers the selected thumbnail in the thumbnails container.
+ */
+function centerThumbnail(button) {
+    const thumbnailsContainer = document.querySelector(".thumbnails");
+    if (!thumbnailsContainer) return;
+
+    const containerRect = thumbnailsContainer.getBoundingClientRect();
+    const buttonRect = button.getBoundingClientRect();
+    const scrollOffset = buttonRect.left - containerRect.left - (containerRect.width / 2) + (buttonRect.width / 2);
+
+    thumbnailsContainer.scrollBy({ left: scrollOffset, behavior: "smooth" });
 }

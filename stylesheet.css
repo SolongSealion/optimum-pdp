@@ -9,16 +9,122 @@
     color: var(--text-color);
 }
 
-/* ----------- Section titles ----------- */
+/* --------------------------------- Image gallery ---------------------------------  */
+
+/* Gallery container */
+.gallery-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+}
+
+/* Featured image */
+.featured-container {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.featured {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Thumbnail row */
+.thumbnails {
+    display: flex;
+    justify-content: flex-start; /* Ensures first image starts at the left */
+    overflow-x: auto; /* Keep horizontal scrolling */
+    gap: 8px;
+    margin-top: 10px;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0px 10px;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    overscroll-behavior-x: contain; /* Prevents entire page from scrolling */
+    padding-left: 0; /* Ensures the first image is fully left-aligned */
+    margin-left: 0;
+    white-space: nowrap; /* Prevents items from wrapping */
+    width: 100%; /* Ensures full width usage */
+    cursor: grab; /* Show grab cursor */
+    user-select: none; /* Prevent text selection while dragging */
+}
+
+/* Hide scrollbar while keeping scroll functionality */
+.thumbnails::-webkit-scrollbar {
+    display: none; /* Hides scrollbar in Webkit browsers */
+}
+
+.thumbnails {
+    -ms-overflow-style: none; /* Hides scrollbar in IE and Edge */
+    scrollbar-width: none; /* Hides scrollbar in Firefox */
+}
+
+/* Active drag state */
+.thumbnails.dragging {
+    cursor: grabbing;
+}
+
+/* Thumbnail buttons */
+.thumbnail-btn {
+    border: none;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+}
+
+.thumbnail-btn img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+    opacity: 0.7;
+    border: 2px solid transparent;
+    pointer-events: none;
+}
+
+/* Active Thumbnail */
+.thumbnail-btn.active img {
+    opacity: 1;
+    border: 2px solid var(--accent);
+}
+
+/* Mobile-specific fixes */
+@media (max-width: 768px) {
+    .thumbnails {
+        white-space: nowrap; /* Prevents wrapping */
+        padding-left: 0px;
+        margin-left: 0;
+        touch-action: pan-x; /* Stops vertical scrolling while swiping thumbnails */
+    }
+
+    /* Force first thumbnail to be aligned left */
+    .thumbnail-btn:first-child {
+        margin-left: 0 !important; /* Ensures first thumbnail is at the very left */
+    }
+}
+
+/* --------------------------------- Select your intake form and interval ---------------------------------  */
+
+/* Section titles */
 .selection-title {
     margin-bottom: 10px;
     margin-top: 16px;
-    display: flex; /* Align text and icon in a row */
+    display: flex;
     align-items: center;
-    gap: 6px; /* Spacing between text and icon */
+    gap: 6px;
 }
 
-/* ----------- Options container ----------- */
+/* Options container */
 .intake-options,
 .interval-options {
     display: flex;
@@ -41,7 +147,7 @@
     display: none;
 }
 
-/* ----------- Box surrounding options ----------- */
+/* Box surrounding options */
 .option-box {
     border: 1px solid var(--base-soft);
     border-radius: 8px;
@@ -54,7 +160,7 @@
     text-align: center;
 }
 
-/* ----------- Additional information ----------- */
+/* Additional information */
 .intake-information-seperate {
     margin-top: 10px;
     display: flex;
@@ -66,12 +172,12 @@
     font-size: 18px;
 }
 
-/* Hide by default */
+/* Hide additional information by default */
 .hidden {
     display: none;
 }
 
-/* ----------- Tooltip styling (copied from Tailwind) ----------- */
+/* Tooltip styling (Tailwind) */
 .info-icon {
     display: inline-flex;
     align-items: center;
@@ -121,7 +227,7 @@
     visibility: visible;
 }
 
-/* ----------- Titles and prices ----------- */
+/* Titles and prices */
 .title-price-group {
     display: flex;
     justify-content: space-between;
@@ -137,7 +243,7 @@
     color: var(--header-color);
 }
 
-/* ----------- Price details ----------- */
+/* Price details */
 .price-details {
     display: flex;
     flex-direction: column;
@@ -160,7 +266,7 @@
     color: var(--success-color);
 }
 
-/* ----------- Divider ----------- */
+/* Divider */
 .divider {
     width: 100%;
     height: 1px;
@@ -168,7 +274,7 @@
     margin: 10px 0;
 }
 
-/* ----------- USPs section ----------- */
+/* USPs section */
 .usps {
     display: flex;
     flex-direction: column;
@@ -187,7 +293,7 @@
     text-align: center;
 }
 
-/* ----------- Selected option styling ----------- */
+/* Selected option styling */
 .option input:checked + .option-box {
     border-color: var(--accent);
     background-color: rgba(0, 122, 255, 0.05);
@@ -202,7 +308,7 @@
     transition: max-height 0.1s ease-out, opacity 0.1s ease-out;
 }
 
-/* ----------- Disabled options ----------- */
+/* Disabled options */
 .option.disabled {
     cursor: not-allowed;
     pointer-events: none;
