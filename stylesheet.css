@@ -24,7 +24,7 @@
 /* Featured image */
 .featured-container {
     width: 100%;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 16/9;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,20 +41,20 @@
 /* Thumbnail row */
 .thumbnails {
     display: flex;
-    justify-content: flex-start; /* Ensures first image starts at the left */
-    overflow-x: auto; /* Keep horizontal scrolling */
+    justify-content: flex-start;
+    overflow-x: auto;
     gap: 8px;
     margin-top: 10px;
     scroll-snap-type: x mandatory;
     scroll-padding: 0px 10px;
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
     overscroll-behavior-x: contain; /* Prevents entire page from scrolling */
-    padding-left: 0; /* Ensures the first image is fully left-aligned */
+    padding-left: 0;
     margin-left: 0;
-    white-space: nowrap; /* Prevents items from wrapping */
-    width: 100%; /* Ensures full width usage */
-    cursor: grab; /* Show grab cursor */
-    user-select: none; /* Prevent text selection while dragging */
+    white-space: nowrap;
+    width: 100%;
+    cursor: grab;
+    user-select: none;
 }
 
 /* Hide scrollbar while keeping scroll functionality */
@@ -83,8 +83,8 @@
 }
 
 .thumbnail-btn img {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     object-fit: cover;
     border-radius: 6px;
     opacity: 0.7;
@@ -101,17 +101,21 @@
 /* Mobile-specific fixes */
 @media (max-width: 768px) {
     .thumbnails {
-        white-space: nowrap; /* Prevents wrapping */
+        white-space: nowrap;
         padding-left: 0px;
         margin-left: 0;
-        touch-action: pan-x; /* Stops vertical scrolling while swiping thumbnails */
+        touch-action: pan-x;
     }
 
     /* Force first thumbnail to be aligned left */
     .thumbnail-btn:first-child {
-        margin-left: 0 !important; /* Ensures first thumbnail is at the very left */
+        margin-left: 0 !important;
     }
 }
+
+/* --------------------------------- Title, subtitle, buttons, and bottom USPs ---------------------------------  */
+
+
 
 /* --------------------------------- Select your intake form and interval ---------------------------------  */
 

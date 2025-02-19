@@ -10,11 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Tooltips and info boxes hidden on page load
     resetIntakeInfo();
 
-    // Add event listeners
+    // When the user hovers over the info icon, a tooltip appears
     if (starterkitInfoIcon) {
         starterkitInfoIcon.addEventListener("mouseenter", () => positionTooltip(starterkitInfoIcon, tooltip));
     }
 
+    // Listens for when user selects an interval or intake option
     if (form) {
         form.addEventListener("change", (event) => {
             const target = event.target;
@@ -23,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // When a user clicks on a thumbnail it updates the featured image, highlights the selected thumbnail, and recenters the row of thumbnails
     if (thumbnailButtons.length > 0) {
         thumbnailButtons.forEach(button => {
             button.addEventListener("click", () => {
