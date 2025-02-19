@@ -103,7 +103,7 @@
     .thumbnails {
         white-space: nowrap;
         padding-left: 0px;
-        margin-left: 0;
+        margin-left: 0px;
         touch-action: pan-x;
     }
 
@@ -113,9 +113,49 @@
     }
 }
 
-/* --------------------------------- Title, subtitle, buttons, and bottom USPs ---------------------------------  */
+/* --------------------------------- Title, subtitle, buttons, and general USPs ---------------------------------  */
 
+.title {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--header-color);
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
 
+.subtitle {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--header-color);
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.button {
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-radius: 999px;
+    font-size: 18px;
+    font-family: 'Apercu', sans-serif;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.primary-button {
+    border: none;
+    background-color: var(--accent);
+    color: white;
+}
+
+.secondary-button {
+    border: 2px solid var(--accent);
+    background-color: white;
+    color: var(--accent);
+}
 
 /* --------------------------------- Select your intake form and interval ---------------------------------  */
 
@@ -243,7 +283,7 @@
     flex-direction: column;
 }
 
-.title {
+.interval-title {
     color: var(--header-color);
 }
 
@@ -279,13 +319,13 @@
 }
 
 /* USPs section */
-.usps {
+.variant-usps {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.usp {
+.variant-usp {
     display: flex;
     font-size: 14px;
     align-items: center;
