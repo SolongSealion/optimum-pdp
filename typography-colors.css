@@ -41,7 +41,9 @@
     --header-color: #231F20;
     --text-color: #4D4D4F;
     --success-color: #277C32;
+    --selected-green: #8BC751;
     --table-color: #142B6F;
     --disabled-color: #D8D8D8;
     --disabled-text-color: #707070;
+    --background-shade: #F2F2F2;
 }
