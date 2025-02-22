@@ -8,18 +8,22 @@
     line-height: 1.5;
     color: var(--text-color);
     max-width: 1200px;
-    margin: 1rem auto;
+    margin: 3rem auto;
     padding: 0 1rem;
 }
 
-/* --------------------------------- Page layout ---------------------------------  */
-
-/* .container {
+.container {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-} */
- 
+    align-items: center;
+    gap: 2rem;
+}
+
+.link {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
 /* --------------------------------- Image gallery ---------------------------------  */
 
 /* Gallery container */
@@ -28,13 +32,11 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 500px;
-    margin: auto;
+    max-width: 600px;
 }
 
 /* Featured image */
 .featured-container {
-    width: 100%;
     aspect-ratio: 16/9;
     display: flex;
     align-items: center;
@@ -59,7 +61,7 @@
     scroll-snap-type: x mandatory;
     scroll-padding: 0px 10px;
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior-x: contain; /* Prevents entire page from scrolling */
+    overscroll-behavior-x: contain;
     padding-left: 0;
     margin-left: 0;
     white-space: nowrap;
@@ -70,12 +72,12 @@
 
 /* Hide scrollbar while keeping scroll functionality */
 .thumbnails::-webkit-scrollbar {
-    display: none; /* Hides scrollbar in Webkit browsers */
+    display: none;
 }
 
 .thumbnails {
-    -ms-overflow-style: none; /* Hides scrollbar in IE and Edge */
-    scrollbar-width: none; /* Hides scrollbar in Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 /* Active drag state */
@@ -103,7 +105,7 @@
     pointer-events: none;
 }
 
-/* Active Thumbnail */
+/* Active thumbnail */
 .thumbnail-btn.active img {
     opacity: 1;
     border: 2px solid var(--accent);
@@ -118,18 +120,16 @@
         touch-action: pan-x;
     }
 
-    /* Force first thumbnail to be aligned left */
     .thumbnail-btn:first-child {
         margin-left: 0 !important;
     }
 }
 
-/* --------------------------------- Title, subtitle, buttons, and general USPs ---------------------------------  */
+/* --------------------------------- Title, subtitle, buttons, general USPs, and customer support ---------------------------------  */
 
-.product-aside{ 
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
+.product-aside {
+    width: 100%;
+    max-width: 600px;
 }
 
 .title {
@@ -179,25 +179,42 @@
 
 .general-usps {
     display: flex;
-    justify-content: space-between;
     flex-direction: column;
-    gap: 12px;
-    margin-top: 20px;
 }
 
 .general-usp {
     display: flex;
     align-items: center;
-    gap: 4px;
+    font-size: 14px;
 }
 
 .circle-icon {
     color: var(--success-color);
+    font-size: 30px;
 }
 
 .highlighted-word {
     font-weight: 700;
     color: var(--success-color);
+}
+
+.customer-service-container {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--background-shade);
+    padding: .8rem 1rem;
+    border-radius: 8px;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.customer-service-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.customer-service-question {
+    font-weight: 700;
 }
 
 /* --------------------------------- Select your intake form and interval ---------------------------------  */
@@ -411,6 +428,66 @@
     opacity: 0.6;
 }
 
+/* --------------------------------- Product description, product USPs, and social proof --------------------------------- */
+
+.product-description-usps {
+    margin: 0;
+}
+
+.product-info-divider {
+    height: 1px;
+    background-color: #D8D8D8;
+    width: 100%;
+}
+
+.product-usp {
+    background-color: var(--background-shade);
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    gap: 4px;
+}
+
+.product-usps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.product-usps-icon {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.win-icon {
+    width: 50px;
+}
+
+.social-proof {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.social-proof-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.used-daily-by-5000 {
+    color: var(--disabled-text-color);
+    font-size: 14px;
+}
+
 /* --------------------------------- Desktop --------------------------------- */
 
 @media (min-width: 1024px) {
@@ -418,25 +495,23 @@
     /* Page layout */
     .container {
         display: grid;
-        grid-template-columns: auto 35%;
-        gap: 5rem;
+        grid-template-columns: auto 40%;
+        gap: 1.5rem 4rem;
         max-width: 1200px;
         margin: auto;
         align-items: start;
         height: auto;
-        overflow: visible !important;
     }
 
     .product-aside {
         position: sticky;
         top: 20px;
         align-self: start;
-        grid-row: span 2;
+        grid-row: span 5;
     }
 
     /* Gallery adjustments */
     .gallery-container {
-        width: auto;
         max-width: 100%;
         flex: 2;
         flex-direction: row;
@@ -445,7 +520,7 @@
     
     .thumbnails {
         order: 1;
-        width: 115px;
+        width: 15%;
         flex-direction: column;
         overflow-y: auto;
         overflow-x: hidden;
