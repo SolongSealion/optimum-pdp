@@ -47,3 +47,12 @@
     --disabled-text-color: #707070;
     --background-shade: #F2F2F2;
 }
+
+
+/* Small devices (sm): 640px and up - @media (min-width: 640px) {}
+  
+Medium devices (md): 768px and up - @media (min-width: 768px) {}
+  
+Large devices (lg): 1024px and up - @media (min-width: 1024px) {}
+  
+Extra large devices (xl): 1280px and up - @media (min-width: 1280px) {} */

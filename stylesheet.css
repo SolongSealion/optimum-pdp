@@ -1,15 +1,17 @@
 @import url("typography-colors.css");
-@import url("desktop.css");
 
 .page {
+    box-sizing: border-box;
     font-family: 'Apercu', sans-serif;
     font-size: 16px;
     letter-spacing: -0.02em;
     line-height: 1.5;
-    margin: 1rem;
     color: var(--text-color);
+    max-width: 1200px;
+    margin: 1rem auto;
+    padding: 0 1rem;
 }
-
+ 
 /* --------------------------------- Image gallery ---------------------------------  */
 
 /* Gallery container */
@@ -115,6 +117,12 @@
 }
 
 /* --------------------------------- Title, subtitle, buttons, and general USPs ---------------------------------  */
+
+.product-aside{ 
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .title {
     font-size: 36px;
@@ -394,3 +402,63 @@
     color: var(--disabled-text-color);
     opacity: 0.6;
 }
+
+/* --------------------------------- Desktop --------------------------------- */
+
+@media (min-width: 1024px) {
+    
+    /* Page layout */
+    .container {
+        display: flex;
+        flex-direction: row-reverse;
+        gap: 4rem;
+    }
+
+    .aside-wrapper {
+        flex: 3;
+        min-width: 0;
+    }
+
+    .product-aside {
+        position: sticky;
+        top: 2rem;
+        
+    }
+
+    .product-information {
+        flex: 5;
+    }
+
+    /* Gallery adjustments */
+    .gallery-container {
+        flex-direction: row;
+        align-items: start;
+        max-width: none;
+    }
+    
+    .thumbnails {
+        order: 1;
+        width: 115px;
+        flex-direction: column;
+        overflow-y: auto;
+        overflow-x: hidden;
+        gap: 8px;
+        margin: 0 10px 0 0;
+        scroll-snap-type: y mandatory;
+        white-space: normal;
+    }
+
+    .thumbnail-btn img {
+        width: 95%;
+        height: 100%;
+    }
+    
+    .featured-container {
+        order: 2;
+        flex: 1;
+        width: auto;
+        aspect-ratio: 1;
+    }
+}
+
+
