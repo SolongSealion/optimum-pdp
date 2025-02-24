@@ -122,3 +122,44 @@ function centerThumbnail(button) {
 
     thumbnailsContainer.scrollBy({ left: scrollOffset, behavior: "smooth" });
 }
+
+/**
+ * Accordion.
+ */
+document.querySelectorAll('.accordion').forEach(accordion => {
+    const content = accordion.querySelector('.accordion-content');
+    const showMore = accordion.querySelector('.show-more');
+    const button = accordion.querySelector('.toggle-btn');
+    const gradient = accordion.querySelector('.gradient');
+    const arrowDown = accordion.querySelector('.arrow-down');
+    const arrowUp = accordion.querySelector('.arrow-up');
+
+    // Ensure required elements exist
+    if (!content || !showMore || !button || !arrowDown || !arrowUp) return;
+
+    // Set initial collapsed state
+    accordion.dataset.expanded = "false";
+    arrowUp.style.display = "none"; // Hide the up arrow initially
+
+    showMore.addEventListener('click', () => {
+        const isExpanded = accordion.dataset.expanded === "true";
+
+        if (isExpanded) {
+            // Collapse
+            content.style.maxHeight = "160px";
+            button.textContent = "Show more";
+            gradient.style.opacity = "1";
+            arrowDown.style.display = "inline"; // Show down arrow
+            arrowUp.style.display = "none"; // Hide up arrow
+            accordion.dataset.expanded = "false";
+        } else {
+            // Expand
+            content.style.maxHeight = content.scrollHeight + "px";
+            button.textContent = "Show less";
+            gradient.style.opacity = "0";
+            arrowDown.style.display = "none"; // Hide down arrow
+            arrowUp.style.display = "inline"; // Show up arrow
+            accordion.dataset.expanded = "true";
+        }
+    });
+});
