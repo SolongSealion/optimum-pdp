@@ -76,13 +76,13 @@
             <div class="selection-title">Select your interval</div>
             <div class="interval-options">
                 <label class="option">
-                    <input type="radio" name="interval" value="subscription">
+                    <input type="radio" name="interval" value="90-day plan">
                     <div class="option-box">
                         <!-- <span class="recommendation-tag">Most recommended</span> -->
                         <div class="title-price-group">
                             <div class="title-price">
-                                <span class="interval-title">3-Month Subscription</span>
-                                <span class="green-subtitle">Subscribe and save 16%</span>
+                                <span class="interval-title">90-day plan</span>
+                                <span class="green-subtitle">Subscribe and <span class="save-16">save 16%</span></span>
                             </div>
                             <div class="price-details">
                                 <div>
@@ -109,7 +109,7 @@
                 </label>
 
                 <label class="option">
-                    <input type="radio" name="interval" value="one-time">
+                    <input type="radio" name="interval" value="One-time purchase">
                     <div class="option-box">
                         <div class="title-price-group center">
                             <span class="interval-title">One-time purchase</span>
@@ -135,7 +135,7 @@
                 </label>
 
                 <label class="option">
-                    <input type="radio" name="interval" value="starterkit">
+                    <input type="radio" name="interval" value="Starterkit">
                     <div class="option-box">
                         <div class="title-price-group center">
                             <span class="interval-title">Starterkit</span>
@@ -163,34 +163,38 @@
             <button class="button primary-button">Add to cart</button>
             <button class="button secondary-button">Bundle & save</button>
 
-            <div class="general-usps">
-                <div class="general-usp">
-                    <span class="material-symbols-outlined circle-icon">check_small</span>
-                    <span><span class="highlighted-word">Free shipping</span></span>
-                </div>
-                <div class="general-usp">
-                    <span class="material-symbols-outlined circle-icon">check_small</span>
-                    <span><span class="highlighted-word">Scientifically tested product</span></span>
-                </div>
-                <div class="general-usp">
-                    <span class="material-symbols-outlined circle-icon">check_small</span>
-                    <span><span class="highlighted-word">Secure checkout</span></span>
-                </div>
-            </div>
-
-            <!-- <div class="customer-service-container">
-                <img src="assets/FitForMe_Icons_Black-03.svg">
-                <div class="customer-service-text">
-                    <span class="customer-service-question">Need help or advice?</span>
-                    <span>Our <span class="link">customer service team</span> is here for you.</span>
-                </div>
-            </div> -->
-
         </aside>
+
+        <div class="sticky-cta">
+            <div class="selection-with-price">
+                <div>
+                    <span class="selected-form"></span> 
+                    <span class="separator hidden">|</span> 
+                    <span class="selected-interval"></span>
+                </div>
+                <div class="price-summary"></div>
+            </div>
+            <button class="button primary-button sticky-button">Add to cart</button>
+        </div>        
+
+        <div class="general-usps">
+            <div class="general-usp">
+                <span class="material-symbols-outlined circle-icon">check_small</span>
+                <span><span class="highlighted-word">Free shipping</span></span>
+            </div>
+            <div class="general-usp">
+                <span class="material-symbols-outlined circle-icon">check_small</span>
+                <span><span class="highlighted-word">Scientifically tested product</span></span>
+            </div>
+            <div class="general-usp">
+                <span class="material-symbols-outlined circle-icon">check_small</span>
+                <span><span class="highlighted-word">Secure checkout</span></span>
+            </div>
+        </div>
 
         <div class="product-info-divider"></div>
 
-        <div class="product-description-usps">
+        <section class="product-description-usps">
             <div class="social-proof">
                 <img src="assets/win.png" class="win-icon">
                 <div class="social-proof-text">
@@ -239,11 +243,11 @@
                 </div>
             
             </div>
-        </div>
+        </section>
 
         <div class="product-info-divider"></div>
 
-        <div class="accordion">
+        <section class="accordion">
             <div class="accordion-content">
                 <h3 class="section-titles">How to take</h3>
                 <div>
@@ -252,18 +256,20 @@
                     <span class="block">Chewable: 1 chewable and 1 Ferro Optimum tablet a day</span>
                 </div>
                 <div>
-                    <span class="bold">Tips</span>
-                    <div class="tip">
-                        <span class="material-symbols-outlined">schedule</span>
-                        <span>Take with food or before bedtime</span>
-                    </div>
-                    <div class="tip">
-                        <span class="material-symbols-outlined">local_drink</span>
-                        <span>A sip of water helps the multivitamin go down</span>
-                    </div>
-                    <div class="tip">
-                        <span class="material-symbols-outlined">developer_guide</span>
-                        <span class="link">Read our complete vitamin intake guide</span>
+                    <div class="intake-tips">
+                        <span class="bold">Tips</span>
+                        <div class="intake-tip">
+                            <span class="material-symbols-outlined">schedule</span>
+                            <span>Take with food or before bedtime</span>
+                        </div>
+                        <div class="intake-tip">
+                            <span class="material-symbols-outlined">local_drink</span>
+                            <span>A sip of water helps the multivitamin go down</span>
+                        </div>
+                        <div class="intake-tip">
+                            <span class="material-symbols-outlined">developer_guide</span>
+                            <span class="link">Read our complete vitamin intake guide</span>
+                        </div>
                     </div>
                 </div>
                 <div>
@@ -279,39 +285,107 @@
                 <span class="material-symbols-outlined arrow-down">keyboard_arrow_down</span>
                 <span class="material-symbols-outlined arrow-up">keyboard_arrow_up</span>
             </div>
-        </div>
+        </section>
 
         <div class="product-info-divider"></div>
 
-        <div class="accordion">
+        <section class="accordion">
             <div class="accordion-content">
                 <h3 class="section-titles">Vitamins and minerals</h3>
                 <p class="product-description">
                     A dose of WLS Optimum (1 capsule) <span class="bold inline">or</span> a dose of WLS Optimum (1 chewable) & Ferro Optimum (1 tablet) contain:
                 </p>
                 <div class="vitamins-and-minerals-table">
-                    <div class="cell">x</div>
-                    <div class="cell">i</div>
-                    <div class="cell">j</div>
+                    <div class="cell filled">Vitamins</div>
+                    <div class="cell filled">Amount</div>
+                    <div class="cell filled">RI*</div>
                     
-                    <div class="cell">x</div>
-                    <div class="cell">i</div>
-                    <div class="cell">j</div>
+                    <div class="cell">Vitamin A</div>
+                    <div class="cell">800 μg RE</div>
+                    <div class="cell">100%</div>
                     
-                    <div class="cell">x</div>
-                    <div class="cell">i</div>
-                    <div class="cell">j</div>
+                    <div class="cell">Vitamin B1</div>
+                    <div class="cell">2,75 mg</div>
+                    <div class="cell">250%</div>
                     
-                    <div class="cell">x</div>
-                    <div class="cell">i</div>
-                    <div class="cell">j</div>
+                    <div class="cell">Vitamin B2</div>
+                    <div class="cell">1,7 mg</div>
+                    <div class="cell">121%</div>
+
+                    <div class="cell">Niacin (B3)</div>
+                    <div class="cell">25 mg NE</div>
+                    <div class="cell">156%</div>
+
+                    <div class="cell">Pantothenic acid (B5)</div>
+                    <div class="cell">9 mg</div>
+                    <div class="cell">150%</div>
+
+                    <div class="cell">Vitamin B6</div>
+                    <div class="cell">1,5 mg</div>
+                    <div class="cell">107%</div>
+
+                    <div class="cell">Biotin (B8)</div>
+                    <div class="cell">150 μg</div>
+                    <div class="cell">300%</div>
+
+                    <div class="cell">Folic acid (B11/B9)</div>
+                    <div class="cell">500 μg</div>
+                    <div class="cell">250%</div>
+
+                    <div class="cell">Vitamin B12</div>
+                    <div class="cell">100 μg</div>
+                    <div class="cell">4000%</div>
+
+                    <div class="cell">Vitamin C</div>
+                    <div class="cell">100 mg</div>
+                    <div class="cell">125%</div>
+
+                    <div class="cell">Vitamin D3</div>
+                    <div class="cell">75 μg</div>
+                    <div class="cell">1500%</div>
+
+                    <div class="cell">Vitamin E</div>
+                    <div class="cell">15 mg α-TE</div>
+                    <div class="cell">125%</div>
+
+                    <div class="cell filled">Minerals</div>
+                    <div class="cell filled"></div>
+                    <div class="cell filled"></div>
+
+                    <div class="cell">Chromium</div>
+                    <div class="cell">40 μg</div>
+                    <div class="cell">100%</div>
+
+                    <div class="cell">Manganese</div>
+                    <div class="cell">3 mg</div>
+                    <div class="cell">150%</div>
+
+                    <div class="cell">Molybdenum</div>
+                    <div class="cell">50 μg</div>
+                    <div class="cell">100%</div>
+
+                    <div class="cell">Selenium</div>
+                    <div class="cell">55 μg</div>
+                    <div class="cell">100%</div>
+
+                    <div class="cell">Zinc</div>
+                    <div class="cell">28 mg</div>
+                    <div class="cell">280%</div>
+
+                    <div class="cell">Copper**</div>
+                    <div class="cell">1,9 mg</div>
+                    <div class="cell">190%</div>
+                    
+                    <div class="cell">Iron**</div>
+                    <div class="cell">28 mg</div>
+                    <div class="cell">100%</div>
                 </div>
 
                 <span>
                     * RI = reference intake according to regulation (EU) 1169/2011. 
                 </span>
                 <span>
-                    ** Copper and Iron have been removed from the WLS Optimum chewable and are in the Ferro Optimum tablet instead.
+                    ** Copper and iron have been removed from the WLS Optimum chewable and are in the Ferro Optimum tablet instead.
                 </span>
                 <div class="gradient"></div>
             </div>
@@ -320,29 +394,31 @@
                 <span class="material-symbols-outlined arrow-down">keyboard_arrow_down</span>
                 <span class="material-symbols-outlined arrow-up">keyboard_arrow_up</span>
             </div>
-        </div>
+        </section>
 
         <div class="product-info-divider"></div>
-        
-        <div class="accordion">
+
+        <section class="accordion">
             <div class="accordion-content">
-
+                <h3 class="section-titles">Ingredients</h3>
                 <div>
-                    <span class="bold">Tips</span>
-                    <div class="tip">
-                        <span class="material-symbols-outlined">schedule</span>
-                        <span>Take with food or before bedtime</span>
-                    </div>
-                    <div class="tip">
-                        <span class="material-symbols-outlined">local_drink</span>
-                        <span>A sip of water helps the multivitamin go down</span>
-                    </div>
-                    <div class="tip">
-                        <span class="material-symbols-outlined">developer_guide</span>
-                        <span class="link">Read our complete vitamin intake guide</span>
-                    </div>
+                    <span class="bold">WLS Optimum Capsule</span>
+                    <span class="block">
+                        L-ascorbinezuur (Vitamine C), ijzer(II)fumaraat, capsule (hydroxypropylmethylcellulose), zinkcitraat, vulstof (microkristallijne cellulose), cholecalciferol (Vitamine D3), nicotinamide (niacine), D-alfa-tocoferylwaterstofsuccinaat (Vitamine E), aroma (kers), koper(II)gluconaat, retinylpalmitaat (Vitamine A), mangaancitraat, calcium-D-pantothenaat, antiklontermiddelen (magnesiumzouten van vetzuren, siliciumdioxide), natriumselenaat, kaliumjodide, thiaminehydrochloride (Vitamine B1), pyridoxal-5‘-fosfaat (Vitamine B6), chroom(III)chloride, riboflavine (Vitamine B2), kleurstof (ijzeroxide), pteroylmonoglutaminezuur, D-biotine, natriummolybdaat, cyanocobalamine (Vitamine B12).
+                    </span>
                 </div>
-
+                <div>
+                    <span class="bold">WLS Optimum Chewable</span>
+                    <span class="block">
+                        Sucrose, zoetstoffen (xylitol, sucralose), antiklontermiddelen (vetzuren, acaciagom, magnesiumzouten van vetzuren), L-ascorbinezuur (vitamine C), zinkcitraat, voedingszuur (citroenzuur), aroma (framboos), cholecalciferol (vitamine D3), nicotinamide (Niacine), D-alfa-tocoferylwaterstofsuccinaat (vitamine E), mangaancitraat, natriumseleniet, cyanocobalamine (vitamine B12), retinylpalmitaat (vitamine A), calcium-D-pantothenaat (Vitamine B5), D-biotine, kleurstof (ijzeroxide), foliumzuur, kaliumjodide, thiaminehydrochloride (vitamine B1), pyridoxal-5′-fosfaat (vitamine B6), riboflavine (vitamine B2), chroom(III)chloride, natriummolybdaat.
+                    </span>
+                </div>
+                <div>
+                    <span class="bold">WLS Ferro Optimum</span>
+                    <span class="block">
+                        Bulking agents (microcrystalline cellulose, dicalcium phosphate), ferrous fumarate, cupric gluconate, glazing agents (hydroxypropyl methyl cellulose, talc, carnauba wax), anti-caking agent (magnesium salts of fatty acids), colour (iron oxide), stabiliser (glycerol).
+                    </span>
+                </div>
                 <div class="gradient"></div>
             </div>
             <div class="show-more">
@@ -350,7 +426,21 @@
                 <span class="material-symbols-outlined arrow-down">keyboard_arrow_down</span>
                 <span class="material-symbols-outlined arrow-up">keyboard_arrow_up</span>
             </div>
+        </section>
+
+        <div class="product-info-divider"></div>
+
+        <div class="customer-service-container">
+            <img src="assets/FitForMe_Icons_Black-03.svg">
+            <div class="customer-service-text">
+                <span class="customer-service-question">Need help or advice?</span>
+                <span>Our <span class="link">customer service team</span> is here for you.</span>
+            </div>
         </div>
+
+    </div>
+
+    <div>
 
     </div>
     

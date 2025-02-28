@@ -1,46 +1,82 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Elements
+    /*** Elements ***/
     const form = document.body;
     const featuredImage = document.getElementById("featuredImage");
     const thumbnailButtons = document.querySelectorAll(".thumbnail-btn");
-    const thumbnailsContainer = document.querySelector(".thumbnails");
     const starterkitInfoIcon = document.getElementById("starterkit-info-icon");
     const tooltip = document.getElementById("starterkit-tooltip");
 
-    // Tooltips and info boxes hidden on page load
+    /*** Initialize Page State ***/
     resetIntakeInfo();
+    preselectDefaultOptions();
 
-    // When the user hovers over the info icon, a tooltip appears
+    /*** Event Listeners ***/
     if (starterkitInfoIcon) {
         starterkitInfoIcon.addEventListener("mouseenter", () => positionTooltip(starterkitInfoIcon, tooltip));
     }
 
-    // Listens for when user selects an interval or intake option
     if (form) {
-        form.addEventListener("change", (event) => {
-            const target = event.target;
-            if (target.name === "interval") handleIntervalSelection(target);
-            if (target.name === "intake") updateIntakeInformation();
-        });
+        form.addEventListener("change", handleFormChange);
     }
 
-    // When a user clicks on a thumbnail it updates the featured image, highlights the selected thumbnail, and recenters the row of thumbnails
     if (thumbnailButtons.length > 0) {
-        thumbnailButtons.forEach(button => {
-            button.addEventListener("click", () => {
-                // Update featured image source
-                featuredImage.src = "assets/" + button.getAttribute("data-src");
-
-                // Update active thumbnail
-                thumbnailButtons.forEach(btn => btn.classList.remove("active"));
-                button.classList.add("active");
-
-                // Scroll the selected thumbnail into center
-                centerThumbnail(button);
-            });
-        });
+        thumbnailButtons.forEach(button => button.addEventListener("click", () => updateFeaturedImage(button)));
     }
+
+    initializeAccordion();
+    initializeStickyCTA();
 });
+
+/**
+ * Preselects default intake and interval options.
+ */
+function preselectDefaultOptions() {
+    const defaultInterval = document.querySelector('input[name="interval"]');
+    const defaultIntake = document.querySelector('input[name="intake"][value="capsule"]');
+
+    if (defaultInterval) {
+        defaultInterval.checked = true;
+        handleIntervalSelection(defaultInterval, false);
+    }
+    if (defaultIntake) {
+        defaultIntake.checked = true;
+        updateIntakeInformation();
+    }
+
+    updateStickyCTASummary(); // Ensure initial selections appear in the sticky CTA
+}
+
+/**
+ * Handles form change events for interval and intake selection.
+ */
+function handleFormChange(event) {
+    const target = event.target;
+    
+    if (target.name === "interval") handleIntervalSelection(target, true);
+    if (target.name === "intake") updateIntakeInformation();
+    
+    updateStickyCTASummary(); // Update the sticky CTA with the selected values
+}
+
+/**
+ * Updates the sticky CTA summary with selected intake and interval.
+ */
+function updateStickyCTASummary() {
+    const selectedIntake = document.querySelector('input[name="intake"]:checked')?.value || "";
+    const formattedIntake = selectedIntake ? selectedIntake.charAt(0).toUpperCase() + selectedIntake.slice(1) : "";
+    
+    const selectedInterval = document.querySelector('input[name="interval"]:checked')?.value || "";
+    
+    const typeOutput = document.querySelector(".selected-form");
+    const intervalOutput = document.querySelector(".selected-interval");
+    const separator = document.querySelector(".separator");
+
+typeOutput.textContent = formattedIntake;
+    intervalOutput.textContent = selectedInterval;
+
+    // Show or hide the separator based on selection
+    separator.classList.toggle("hidden", !selectedIntake || !selectedInterval);
+}
 
 /**
  * Positions the tooltip dynamically based on available space.
@@ -56,10 +92,10 @@ function positionTooltip(icon, tooltip) {
 }
 
 /**
- * Handles selection of interval (Subscription, One-time, Starterkit).
+ * Handles interval selection (Subscription, One-time, Starterkit).
  */
-function handleIntervalSelection(selectedRadio) {
-    const isStarterKit = selectedRadio.value === "starterkit";
+function handleIntervalSelection(selectedRadio, animate = true) {
+    const isStarterKit = selectedRadio.value === "Starterkit";
     const intakeOptions = document.querySelectorAll(".intake-options .option");
     const starterkitInfoIcon = document.getElementById("starterkit-info-icon");
 
@@ -70,21 +106,7 @@ function handleIntervalSelection(selectedRadio) {
     });
 
     starterkitInfoIcon.classList.toggle("hidden", !isStarterKit);
-
-    // Hide all details, then show the selected one
-    document.querySelectorAll(".details").forEach(details => {
-        details.style.maxHeight = "0px";
-        details.style.opacity = "0";
-        details.style.overflow = "hidden";
-    });
-
-    const selectedDetails = selectedRadio.closest(".option").querySelector(".details");
-    if (selectedDetails) {
-        selectedDetails.style.maxHeight = `${selectedDetails.scrollHeight}px`;
-        selectedDetails.style.opacity = "1";
-        selectedDetails.style.overflow = "visible";
-    }
-
+    updateDetailSections(selectedRadio, animate);
     updateIntakeInformation();
 }
 
@@ -96,17 +118,55 @@ function updateIntakeInformation() {
     const isStarterKit = selectedInterval?.value === "starterkit";
     const selectedIntake = document.querySelector('input[name="intake"]:checked');
     const isChewable = selectedIntake?.value === "chewable";
-    const intakeInfoSeperate = document.querySelector(".intake-information-seperate");
+    const intakeInfoSeparate = document.querySelector(".intake-information-seperate");
 
-    intakeInfoSeperate.classList.toggle("hidden", !(isChewable && !isStarterKit));
+    intakeInfoSeparate.classList.toggle("hidden", !(isChewable && !isStarterKit));
 }
 
 /**
- * Hides all information boxes and tooltips when the page loads.
+ * Hides all information boxes and tooltips on page load.
  */
 function resetIntakeInfo() {
     document.querySelector(".intake-information-seperate")?.classList.add("hidden");
     document.getElementById("starterkit-info-icon")?.classList.add("hidden");
+}
+
+/**
+ * Updates the detail sections for each interval selection.
+ */
+function updateDetailSections(selectedRadio, animate) {
+    document.querySelectorAll(".details").forEach(details => {
+        details.style.maxHeight = "0px";
+        details.style.opacity = "0";
+        details.style.overflow = "hidden";
+    });
+
+    const selectedDetails = selectedRadio.closest(".option").querySelector(".details");
+    if (selectedDetails) {
+        if (animate) {
+            selectedDetails.style.maxHeight = `${selectedDetails.scrollHeight}px`;
+            selectedDetails.style.opacity = "1";
+            selectedDetails.style.overflow = "visible";
+        } else {
+            selectedDetails.style.maxHeight = "none";
+            selectedDetails.style.opacity = "1";
+            selectedDetails.style.overflow = "visible";
+        }
+    }
+}
+
+/**
+ * Updates the featured image based on selected thumbnail.
+ */
+function updateFeaturedImage(button) {
+    const featuredImage = document.getElementById("featuredImage");
+    const thumbnailButtons = document.querySelectorAll(".thumbnail-btn");
+
+    featuredImage.src = "assets/" + button.getAttribute("data-src");
+    thumbnailButtons.forEach(btn => btn.classList.remove("active"));
+    button.classList.add("active");
+
+    centerThumbnail(button);
 }
 
 /**
@@ -124,42 +184,71 @@ function centerThumbnail(button) {
 }
 
 /**
- * Accordion.
+ * Initializes the accordion functionality.
  */
-document.querySelectorAll('.accordion').forEach(accordion => {
-    const content = accordion.querySelector('.accordion-content');
-    const showMore = accordion.querySelector('.show-more');
-    const button = accordion.querySelector('.toggle-btn');
-    const gradient = accordion.querySelector('.gradient');
-    const arrowDown = accordion.querySelector('.arrow-down');
-    const arrowUp = accordion.querySelector('.arrow-up');
+function initializeAccordion() {
+    document.querySelectorAll('.accordion').forEach(accordion => {
+        const content = accordion.querySelector('.accordion-content');
+        const showMore = accordion.querySelector('.show-more');
+        const button = accordion.querySelector('.toggle-btn');
+        const gradient = accordion.querySelector('.gradient');
+        const arrowDown = accordion.querySelector('.arrow-down');
+        const arrowUp = accordion.querySelector('.arrow-up');
 
-    // Ensure required elements exist
-    if (!content || !showMore || !button || !arrowDown || !arrowUp) return;
+        if (!content || !showMore || !button || !arrowDown || !arrowUp) return;
 
-    // Set initial collapsed state
-    accordion.dataset.expanded = "false";
-    arrowUp.style.display = "none"; // Hide the up arrow initially
+        accordion.dataset.expanded = "false";
+        arrowUp.style.display = "none";
 
-    showMore.addEventListener('click', () => {
-        const isExpanded = accordion.dataset.expanded === "true";
+        showMore.addEventListener('click', () => {
+            const isExpanded = accordion.dataset.expanded === "true";
 
-        if (isExpanded) {
-            // Collapse
-            content.style.maxHeight = "160px";
-            button.textContent = "Show more";
-            gradient.style.opacity = "1";
-            arrowDown.style.display = "inline"; // Show down arrow
-            arrowUp.style.display = "none"; // Hide up arrow
-            accordion.dataset.expanded = "false";
-        } else {
-            // Expand
-            content.style.maxHeight = content.scrollHeight + "px";
-            button.textContent = "Show less";
-            gradient.style.opacity = "0";
-            arrowDown.style.display = "none"; // Hide down arrow
-            arrowUp.style.display = "inline"; // Show up arrow
-            accordion.dataset.expanded = "true";
-        }
+            if (isExpanded) {
+                content.style.maxHeight = "120px";
+                button.textContent = "Show more";
+                gradient.style.opacity = "1";
+                arrowDown.style.display = "inline";
+                arrowUp.style.display = "none";
+                accordion.dataset.expanded = "false";
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                button.textContent = "Show less";
+                gradient.style.opacity = "0";
+                arrowDown.style.display = "none";
+                arrowUp.style.display = "inline";
+                accordion.dataset.expanded = "true";
+            }
+        });
     });
-});
+}
+
+/**
+ * Initializes the sticky CTA functionality on mobile.
+ */
+function initializeStickyCTA() {
+    const regularCTA = document.querySelector(".button.primary-button");
+    const stickyCTA = document.querySelector(".sticky-cta");
+    let isScrolling = false;
+
+    function toggleStickyCTA() {
+        if (window.innerWidth < 1024) {
+            const rect = regularCTA.getBoundingClientRect();
+            stickyCTA.classList.toggle("show", rect.bottom < 0);
+        } else {
+            stickyCTA.classList.remove("show");
+        }
+    }
+
+    function scrollHandler() {
+        if (!isScrolling) {
+            isScrolling = true;
+            requestAnimationFrame(() => {
+                toggleStickyCTA();
+                isScrolling = false;
+            });
+        }
+    }
+
+    window.addEventListener("scroll", scrollHandler);
+    window.addEventListener("resize", toggleStickyCTA);
+}
