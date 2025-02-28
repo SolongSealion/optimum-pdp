@@ -10,6 +10,7 @@
     max-width: 1200px;
     margin: 3rem auto;
     padding: 0 1rem;
+    padding-bottom: 12rem;
 }
 
 .container {
@@ -173,7 +174,6 @@
 .general-usps {
     display: flex;
     flex-direction: column;
-    
 }
 
 .general-usp {
@@ -536,6 +536,12 @@
     transition: max-height 0.3s ease-in-out;
 }
 
+.section-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
 .gradient {
     position: absolute;
     bottom: 0;
@@ -590,6 +596,60 @@
     background-color: var(--background-shade);
     font-weight: 700;
     border-bottom: 1px solid var(--disabled-text-color);
+}
+
+/* --------------------------------- Health benefits ---------------------------------- */
+
+.health-benefit-container {
+    background-color: var(--yellow-200);
+    padding: .5rem;
+    /* border-radius: 999px; */
+    border-radius: 1rem;
+}
+
+.health-benefit-top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: .5rem;
+}
+
+.health-benefit-icon-and-title {
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+    align-items: center;
+}
+
+.circle-around-icon {
+    background-color: var(--yellow-500);
+    border-radius: 50%;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circle-around-icon .material-symbols-outlined {
+    font-size: 20px;
+}
+
+.health-benefit-accordion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--yellow-900);
+}
+
+.vitamin-mineral-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+    font-size: 
 }
 
 /* --------------------------------- Sticky CTA on mobile --------------------------------- */

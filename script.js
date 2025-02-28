@@ -1,3 +1,9 @@
+const intakeOptions = document.querySelector(".intake-options");
+const intervalOptions = document.querySelector('.interval-options');
+
+let intakeOption = getActiveIntakeOption();
+let intervalOption = getActiveIntervalOption();
+
 document.addEventListener("DOMContentLoaded", () => {
     /*** Elements ***/
     const form = document.body;
@@ -5,10 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const thumbnailButtons = document.querySelectorAll(".thumbnail-btn");
     const starterkitInfoIcon = document.getElementById("starterkit-info-icon");
     const tooltip = document.getElementById("starterkit-tooltip");
+    
 
     /*** Initialize Page State ***/
     resetIntakeInfo();
-    preselectDefaultOptions();
 
     /*** Event Listeners ***/
     if (starterkitInfoIcon) {
@@ -24,26 +30,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     initializeAccordion();
+    initializeOptions();
     initializeStickyCTA();
-});
+}); 
 
-/**
- * Preselects default intake and interval options.
- */
-function preselectDefaultOptions() {
-    const defaultInterval = document.querySelector('input[name="interval"]');
-    const defaultIntake = document.querySelector('input[name="intake"][value="capsule"]');
-
-    if (defaultInterval) {
-        defaultInterval.checked = true;
-        handleIntervalSelection(defaultInterval, false);
-    }
-    if (defaultIntake) {
-        defaultIntake.checked = true;
-        updateIntakeInformation();
-    }
-
-    updateStickyCTASummary(); // Ensure initial selections appear in the sticky CTA
+function initializeOptions() {
+    handleIntakeSelection();
+    handleIntervalSelection(false);
+    updateStickyCTASummary();
 }
 
 /**
@@ -52,10 +46,10 @@ function preselectDefaultOptions() {
 function handleFormChange(event) {
     const target = event.target;
     
-    if (target.name === "interval") handleIntervalSelection(target, true);
-    if (target.name === "intake") updateIntakeInformation();
+    if (target.name === "interval") handleIntervalSelection(true);
+    if (target.name === "intake") handleIntakeSelection();
     
-    updateStickyCTASummary(); // Update the sticky CTA with the selected values
+    updateStickyCTASummary();
 }
 
 /**
@@ -71,7 +65,7 @@ function updateStickyCTASummary() {
     const intervalOutput = document.querySelector(".selected-interval");
     const separator = document.querySelector(".separator");
 
-typeOutput.textContent = formattedIntake;
+    typeOutput.textContent = formattedIntake;
     intervalOutput.textContent = selectedInterval;
 
     // Show or hide the separator based on selection
@@ -94,30 +88,54 @@ function positionTooltip(icon, tooltip) {
 /**
  * Handles interval selection (Subscription, One-time, Starterkit).
  */
-function handleIntervalSelection(selectedRadio, animate = true) {
-    const isStarterKit = selectedRadio.value === "Starterkit";
-    const intakeOptions = document.querySelectorAll(".intake-options .option");
+function handleIntervalSelection(animate = true) {
+    intervalOption = getActiveIntervalOption();
+    const isStarterKit = isStartedKitSelected();
     const starterkitInfoIcon = document.getElementById("starterkit-info-icon");
+    starterkitInfoIcon.classList.toggle("hidden", !isStarterKit);
 
-    intakeOptions.forEach(option => {
+    intakeOptions.querySelectorAll('.option').forEach(option => {
         const input = option.querySelector("input");
-        option.classList.toggle("disabled", isStarterKit);
-        if (isStarterKit) input.checked = false;
+
+        if (isStarterKit) {
+            option.classList.add("disabled");
+            input.checked = false;
+        } else{
+            option.classList.remove("disabled");
+        }
     });
 
-    starterkitInfoIcon.classList.toggle("hidden", !isStarterKit);
-    updateDetailSections(selectedRadio, animate);
-    updateIntakeInformation();
+    if (!isStarterKit) {
+        intakeOption.checked = true;
+    }
+
+    updateInfoText();
+    updateDetailSections(animate);
+}
+
+function isStartedKitSelected() {
+    return getActiveIntervalOption().value === "Starterkit";
+}
+
+function getActiveIntakeOption() {
+    return intakeOptions.querySelector('input:checked');
+}
+
+function getActiveIntervalOption() {
+    return intervalOptions.querySelector('input:checked');
 }
 
 /**
  * Updates the intake information message based on user selection.
  */
-function updateIntakeInformation() {
-    const selectedInterval = document.querySelector('input[name="interval"]:checked');
-    const isStarterKit = selectedInterval?.value === "starterkit";
-    const selectedIntake = document.querySelector('input[name="intake"]:checked');
-    const isChewable = selectedIntake?.value === "chewable";
+function handleIntakeSelection() {
+    intakeOption = getActiveIntakeOption();
+    updateInfoText();
+}
+
+function updateInfoText() {
+    const isStarterKit = isStartedKitSelected();
+    const isChewable = intakeOption.value === "chewable";
     const intakeInfoSeparate = document.querySelector(".intake-information-seperate");
 
     intakeInfoSeparate.classList.toggle("hidden", !(isChewable && !isStarterKit));
@@ -134,14 +152,14 @@ function resetIntakeInfo() {
 /**
  * Updates the detail sections for each interval selection.
  */
-function updateDetailSections(selectedRadio, animate) {
+function updateDetailSections(animate) {
     document.querySelectorAll(".details").forEach(details => {
         details.style.maxHeight = "0px";
         details.style.opacity = "0";
         details.style.overflow = "hidden";
     });
 
-    const selectedDetails = selectedRadio.closest(".option").querySelector(".details");
+    const selectedDetails = intervalOption.closest(".option").querySelector(".details");
     if (selectedDetails) {
         if (animate) {
             selectedDetails.style.maxHeight = `${selectedDetails.scrollHeight}px`;
