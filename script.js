@@ -270,3 +270,54 @@ function initializeStickyCTA() {
     window.addEventListener("scroll", scrollHandler);
     window.addEventListener("resize", toggleStickyCTA);
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const healthBenefitContainers = document.querySelectorAll(".health-benefit-container");
+
+    healthBenefitContainers.forEach(container => {
+        const addIcon = container.querySelector(".health-benefit-accordion .material-symbols-outlined:nth-child(1)");
+        const expandIcon = container.querySelector(".health-benefit-accordion .material-symbols-outlined:nth-child(2)");
+        
+        // Ensure add icon is visible on page load
+        addIcon.classList.remove("hidden");
+        expandIcon.classList.add("hidden");
+
+        container.addEventListener("click", function () {
+            // Close all other accordions
+            healthBenefitContainers.forEach(otherContainer => {
+                if (otherContainer !== container) {
+                    closeAccordion(otherContainer);
+                }
+            });
+            
+            // Toggle the clicked accordion
+            toggleAccordion(container);
+        });
+    });
+
+    function toggleAccordion(container) {
+        const contents = container.querySelector(".health-benefit-contents");
+        const addIcon = container.querySelector(".health-benefit-accordion .material-symbols-outlined:nth-child(1)");
+        const expandIcon = container.querySelector(".health-benefit-accordion .material-symbols-outlined:nth-child(2)");
+
+        if (contents.style.maxHeight) {
+            closeAccordion(container);
+        } else {
+            contents.style.maxHeight = contents.scrollHeight + "px";
+            contents.style.opacity = "1";
+            addIcon.classList.add("hidden");
+            expandIcon.classList.remove("hidden");
+        }
+    }
+
+    function closeAccordion(container) {
+        const contents = container.querySelector(".health-benefit-contents");
+        const addIcon = container.querySelector(".health-benefit-accordion .material-symbols-outlined:nth-child(1)");
+        const expandIcon = container.querySelector(".health-benefit-accordion .material-symbols-outlined:nth-child(2)");
+
+        contents.style.maxHeight = null;
+        contents.style.opacity = "0";
+        addIcon.classList.remove("hidden");
+        expandIcon.classList.add("hidden");
+    }
+});

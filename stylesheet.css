@@ -463,7 +463,7 @@
 }
 
 .product-usp {
-    background-color: var(--background-shade);
+    background-color: var(--yellow-200);
     padding: 2px 4px;
     border-radius: 4px;
     font-size: 14px;
@@ -612,7 +612,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding-right: .5rem;
+    padding-right: 6px;
 }
 
 .health-benefit-icon-and-title {
@@ -641,7 +641,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--yellow-900);
+    color: var(--yellow-700);
 }
 
 .vitamin-mineral-tags {
@@ -649,7 +649,41 @@
     flex-wrap: wrap;
     gap: 6px;
     align-items: center;
-    font-size: 
+    font-size: 14px;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.vitamin-mineral-tag {
+    background-color: var(--yellow-400);
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    gap: 4px;
+}
+
+.vitamin-mineral-summary {
+    padding-left: 12px;
+    padding-right: 12px;
+    display: block;
+}
+
+.health-benefit-contents {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.1s ease-out, opacity 0.1s ease-out;
+}
+
+.health-benefits-container {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
 }
 
 /* --------------------------------- Sticky CTA on mobile --------------------------------- */
@@ -708,7 +742,7 @@
         position: sticky;
         top: 20px;
         align-self: start;
-        grid-row: span 12;
+        grid-row: span 20;
     }
 
     /* Gallery adjustments */
