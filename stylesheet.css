@@ -10,7 +10,7 @@
     max-width: 1200px;
     margin: 3rem auto;
     padding: 0 1rem;
-    padding-bottom: 12rem;
+    padding-bottom: 6rem;
 }
 
 .container {
@@ -35,7 +35,7 @@
 
 /* Featured image */
 .featured-container {
-    aspect-ratio: 16/9;
+    aspect-ratio: 1.3/1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -94,8 +94,8 @@
 }
 
 .thumbnail-btn img {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     object-fit: cover;
     border-radius: 6px;
     opacity: 0.7;
@@ -463,7 +463,7 @@
 }
 
 .product-usp {
-    background-color: var(--yellow-200);
+    background-color: var(--background-shade);
     padding: 2px 4px;
     border-radius: 4px;
     font-size: 14px;
@@ -601,7 +601,7 @@
 /* --------------------------------- Health benefits ---------------------------------- */
 
 .health-benefit-container {
-    background-color: var(--yellow-200);
+    background-color: var(--background-shade);
     padding: .5rem;
     /* border-radius: 999px; */
     border-radius: 1rem;
@@ -623,7 +623,8 @@
 }
 
 .circle-around-icon {
-    background-color: var(--yellow-500);
+    background-color: var(--accent-light);
+    color: var(--accent);
     border-radius: 50%;
     border-radius: 50%;
     height: 40px;
@@ -641,7 +642,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--yellow-700);
+    color: var(--accent);
 }
 
 .vitamin-mineral-tags {
@@ -657,7 +658,7 @@
 }
 
 .vitamin-mineral-tag {
-    background-color: var(--yellow-400);
+    background-color: #d1ecf0;
     padding: 2px 4px;
     border-radius: 4px;
     font-size: 14px;
@@ -721,6 +722,27 @@
     font-weight: 700;
 }
 
+.bundle-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+
+.smaller-text {
+    font-size: 16px;
+}
+
+.bundle-image {
+    width: 240px;
+    height: 240px;
+}
+
+.space {
+    display: flex;
+    flex-direction: column;
+}
+
 /* --------------------------------- Sticky CTA on mobile --------------------------------- */
 
 .sticky-cta {
@@ -758,8 +780,14 @@
 /* --------------------------------- Desktop --------------------------------- */
 
 @media (min-width: 1024px) {
+    .space {
+        display: flex;
+        flex-direction: row;
+    }
+
     .page {
         font-size: 18px;
+        padding-bottom: 0;
     }
     
     /* Page layout */
@@ -777,7 +805,7 @@
         position: sticky;
         top: 20px;
         align-self: start;
-        grid-row: span 20;
+        grid-row: span 15;
     }
 
     /* Gallery adjustments */
@@ -862,6 +890,28 @@
     
     .product-name {
         text-align: left;
-    } 
+    }
+
+    .bundle-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 1.5rem;
+    }
+    
+    .smaller-text {
+        font-size: 16px;
+    }
+    
+    .bundle-image {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .small-button {
+        width: auto;
+        padding-right: 2rem;
+        padding-left: 2rem;
+    }
     
 }

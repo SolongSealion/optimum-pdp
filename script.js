@@ -321,3 +321,7 @@ document.addEventListener("DOMContentLoaded", function () {
         expandIcon.classList.add("hidden");
     }
 });
+
+function showEasterEgg() {
+    alert("Congrats, you found my Easter egg! 🎉 Come to me for a chocolate 🍫");
+}
